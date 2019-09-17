@@ -53,5 +53,7 @@ drift together and bond to form a mesh. We demonstrate that a variety of polygon
 meshes can be manufactured in the simulation, by simply changing the sequence of
 machine types in the seed.
 
+https://github.com/pdturney/johnnyvon/blob/master/self-replication-and-self-assembly.pdf
+
 https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/2.0/
 
