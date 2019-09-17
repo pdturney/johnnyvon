@@ -25,6 +25,8 @@ soup of separate individual particles will eventually spontaneously form self-re
 patterns. We discuss the implications of JohnnyVon for research in nanotechnology,
 theoretical biology, and artificial life.
 
+https://github.com/pdturney/johnnyvon/blob/master/self-replicating-machines.pdf
+
 https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/1.0/
 
 JohnnyVon 2.0
