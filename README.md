@@ -3,7 +3,7 @@ JohnnyVon: self-replicating, self-assembling mobile automata in two-dimensional 
 
 The JohnnyVon Project:
 
-http://johnnyvon.sourceforge.net/
+- http://johnnyvon.sourceforge.net/
 
 JohnnyVon 1.0
 =============
@@ -25,9 +25,9 @@ soup of separate individual particles will eventually spontaneously form self-re
 patterns. We discuss the implications of JohnnyVon for research in nanotechnology,
 theoretical biology, and artificial life.
 
-https://github.com/pdturney/johnnyvon/blob/master/self-replicating-machines.pdf
+- https://github.com/pdturney/johnnyvon/blob/master/self-replicating-machines.pdf
 
-https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/1.0/
+- https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/1.0/
 
 JohnnyVon 2.0
 =============
@@ -53,7 +53,7 @@ drift together and bond to form a mesh. We demonstrate that a variety of polygon
 meshes can be manufactured in the simulation, by simply changing the sequence of
 machine types in the seed.
 
-https://github.com/pdturney/johnnyvon/blob/master/self-replication-and-self-assembly.pdf
+- https://github.com/pdturney/johnnyvon/blob/master/self-replication-and-self-assembly.pdf
 
-https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/2.0/
+- https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/2.0/
 
