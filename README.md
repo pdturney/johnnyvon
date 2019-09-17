@@ -1,7 +1,7 @@
 JohnnyVon: self-replicating, self-assembling mobile automata in two-dimensional continuous space
 ================================================================================================
 
-The JohnnyVon project:
+The JohnnyVon Project:
 
 http://johnnyvon.sourceforge.net/
 
