@@ -29,6 +29,8 @@ theoretical biology, and artificial life.
 
 - https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/1.0/
 
+- https://github.com/pdturney/johnnyvon/blob/master/JohnnyVon-1.0.jar
+
 JohnnyVon 2.0
 =============
 
@@ -56,4 +58,7 @@ machine types in the seed.
 - https://github.com/pdturney/johnnyvon/blob/master/self-replication-and-self-assembly.pdf
 
 - https://sourceforge.net/projects/johnnyvon/files/JohnnyVon/2.0/
+
+- https://github.com/pdturney/johnnyvon/blob/master/JohnnyVon-2.0.jar
+
 
