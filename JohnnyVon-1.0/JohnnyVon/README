@@ -1,0 +1,178 @@
+===========================================================================
+JohnnyVon 
+===========================================================================
+
+Contents:
+1. Introduction
+2. Installation (Running, Compilation, etc.)
+3. Licence
+4. Directories
+5. Overview
+
+---------------------------------------------------------------------------
+1. Introduction
+---------------------------------------------------------------------------
+
+JohnnyVon is a project to produce self-replicating automata in a continuous
+2D space.
+
+It simulates a simple 2D physics-ish universe, with widgets called Codons
+that interact under a fairly simple, plausible set of rules, and have the
+replication of long strings of these Codons as an emergent behaviour of
+these rules.
+
+---------------------------------------------------------------------------
+2. Installation
+---------------------------------------------------------------------------
+
+JohnnyVon is a program written in Java.  Thus, it can be installed and run
+anywhere where the Java SDK 1.3 is available.
+
+  Note: In each set of instructions below, 
+  - Replace / with \ if you run Windows.
+  - Replace x.y with the JohnnyVon version that you downloaded
+  - Replace ($START) with the directory where you saved the downloaded .jar 
+    file.  (e.g. 
+    ~/incoming/ on *nix systems 
+    or 
+    C:\My Downloads\ on Windows.)
+  - Replace ($JAVABIN) with your Java SDK directory (something like
+    /usr/java/j2sdk1.4.0/bin/ on *nix systems 
+    or  
+    C:\j2sdk1.4.0\bin\ on Windows systems.  
+    This may be in your path, so you may not need to worry about it.)
+
+A. Running ................................................................
+
+  If your system is correctly set up, you should be able to do one of the
+  following to run JohnnyVon directly from a downloaded .jar:
+    - Double-click the JohnnyVon-x.y.jar file
+      or
+    - cd ($START)
+      ($JAVABIN)java -jar JohnnyVon-x.y.jar
+      You can add a --read parameter to tell JohnnyVon to read a file from
+      standard input.  For example, if you have unpacked the archive (see i
+      B. below) then you can append 
+      " --read < JohnnyVon/support/input.txt" to read our custom input
+      file, instead of using the default settings.
+
+B. Unpacking ..............................................................
+
+  cd ($START)
+  ($JAVABIN)jar xf JohnnyVon-x.y.jar
+
+  These will create a directory called JohnnyVon/ with all of the
+  JohnnyVon files in it.
+  
+C. Compiling ..............................................................
+
+  cd ($START)JohnnyVon/
+  ($JAVABIN)javac -sourcepath java/ -d ../ @JAVA_FILES
+
+  Note: If you add new files that need to be compiled, you'll need to add 
+    them to the JAVA_FILES file.
+
+D. Generating Documentation ...............................................
+
+  cd ($START)JohnnyVon/
+  ($JAVABIN)javadoc -bottom "Copyright (C) 2002 National Research Council 
+    Canada"  -version -author -package -d doc/ @JAVA_FILES
+  Note: This must all be on one line.  
+
+  This will create documentation in the ($START)JohnnyVon/doc directory.
+  
+  Note: Although the source will compile and run on JDK 1.3, the
+    documentation uses tags that are available only in JDK 1.4 or newer.
+
+  Note: At this time, not all classes/methods are documented with Javadoc.
+  
+  Note: If you add new files that need to be documented, you'll need to add 
+    them to the JAVA_FILES file.
+  
+E. Repackaging ............................................................
+  
+  cd ($START)
+  jar cfm JohnnyVon-x.z.jar JohnnyVon/support/Manifest JohnnyVon/
+
+  This should result in a .jar that is the basically the same as the one you
+  downloaded.
+
+
+---------------------------------------------------------------------------
+4. Directories and Files
+---------------------------------------------------------------------------
+  
+JohnnyVon/
+  - java/		Source .java files
+  - launch/*.class	Compiled .class files for launching JohnnyVon
+    gui/*.class		Compiled .class files for the JohnnyVon engine
+    engine/*.class	Compiled .class files for the JohnnyVon GUI
+  - support/		General support files
+    - Manifest		The Manifest for the .jar file.
+    - *.html		HTML file for the applet version of the code
+  - AUTHORS 		A list of people who helped develop JohnnyVon
+  - LICENCE		Licence for this software
+  - README 		This file
+  - TODO		Future goals
+  - Changelog		Information about differences between versions
+  
+---------------------------------------------------------------------------
+5. Overview
+---------------------------------------------------------------------------
+
+Model Details
+
+The model is a square container with particles (called Codons) floating in a
+shallow liquid that induces brownian motion on the particles.  There are
+precisely two types of Codons -- "Green" and "Purple", or 0 and 1, true and
+false, etc.  Stringing Codons together allows you to encode any arbitrary
+data in DNA-like strings.
+
+The Codons have very thin, flat bodies, and 4 arms, each with various rules
+about attracting, repelling, and bonding.  
+
+The left and right arms have tips that will bond if they bump a left or
+right arm (respectively) at a nearly-straight angle.  When these tips touch,
+they are activated, as though they have a spring attached to them.  This
+string applies little force when the tips are nearly overlapping, but a
+strong force as they get farther apart.  If the large circles stop
+overlapping, the spring breaks, and thus the particles become unbonded.
+These springs also pull the codons straight with respect to each other.
+(That is, a line is drawn between the center of each of the two codons, and
+the codons are given a slight rotational nudge in the direction that would
+align them with that line.)  In practice, these bonds never break.  Once a
+left arm becomes bonded to a right arm, it will ignore other right arms (and
+vice-versa.)  Also, left arms always ignore other left arms.
+
+The upwards arm has either a purple or green tip.  Opposites attract, but
+likes ignore each other.  These tips are activated (and thus grow bigger)
+when either the right or left arm of their Codon becomes activated (bonded.)
+When a green and a purple overlap at any angle +/- 60 degrees from the angle
+of the arm, they also become bonded, and have a spring between them similar
+to the above.  These bonds also have a straightening force.  Thus, two
+left-right bonded codons, each with a bond on their upwards arm will tend to
+pull together the left-right arms of their partners, forming a bonded
+four-some. 
+
+Clearly, (and intentionally), the spontaneous forming of a chain is highly
+unlikely.  If two purple-green arms bond, they will not become activated
+(the upwards arms are activated when a left or right arm is bonded,
+remember!), and they will be ripped apart by brownian motion.  It is
+possible for a left-right bond to form, but the codons have to come at each
+other already almost perfectly aligned, which is highly unlikely (though it
+does happen.)  This is how the initial seed is set up - some number of
+codons are placed perfectly aligned so that their left-right arms bond
+immediately, which activates their upwards arms, attracting and holding some
+of the floating codons.  
+
+Each codon also has an internal state, which is a guess about where it is in
+the chain (whether it is an end codon or not) and whether it should be
+splitting.  The codon can check where it's bonded, and can check the state
+of its neighbours.  With these two pieces of local information, the codons
+can realize when they are in a complete chain, and go into the final phase
+of replication, which is to split.  At this point, the fourth arm, which is
+shorter than, but parallel to the upwards arm, turns on for a fixed number
+of units of time.  This arm (yellow) repels other yellow arms, causing the
+two chains to be somewhat violently pushed apart, and start pulling in other
+codons.  This is repeated until all of the free codons are exhausted.  
+

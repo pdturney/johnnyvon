@@ -1,0 +1,69 @@
+Default Chain of 8 {
+# Select "Custom" to enable editting here.
+# 
+# Size of container (units).  Container extends this far from the 
+# origin on each axis.
+80
+# Number of Codons total 
+88
+# Number of specified codons.  (Remainder will be generated randomly.)
+# This must be at most the number of lines specifying codons below.
+8
+# Starting settings for each codon.  Must have at least as many
+# as the number right above here.
+# x, y, vx, vy, angle, angular_velocity, type
+# (x, y) = location.  (x and y must be between within -(size of container)
+# and +(size of container).
+# (vx, vy) = initial linear velocity.
+# angle = initial angle (radians, CCW from East.)
+# angular_velocity = angular_velocity (radians/sec)
+# type = the bit of information encoded by this codon.  0 or 1.
+-56 4 0 0 90 0 1
+-42 4 0 0 90 0 0
+-28 4 0 0 90 0 1
+-14 4 0 0 90 0 0
+0 4 0 0 90 0 1
+14 4 0 0 90 0 0
+28 4 0 0 90 0 1
+42 4 0 0 90 0 0
+}
+
+Random Soup {
+# Container size
+80
+# Number of Codons
+88
+# Number of specified codons
+0
+}
+
+Pairs {
+# Container Size
+80
+# Number of Codons 
+88 
+# Number of specified codons
+2
+# Codons
+-14 4 0 0 90 0 0
+0 4 0 0 90 0 1
+}
+
+Big Soup{
+# Container Size
+250
+# Number of Codons 
+800
+# Number of specified codons
+8
+# Codons
+-14 4 0 0 90 0 0
+-56 4 0 0 90 0 1
+-42 4 0 0 90 0 0
+-28 4 0 0 90 0 1
+-14 4 0 0 90 0 0
+0 4 0 0 90 0 1
+14 4 0 0 90 0 0
+28 4 0 0 90 0 1
+42 4 0 0 90 0 0
+}

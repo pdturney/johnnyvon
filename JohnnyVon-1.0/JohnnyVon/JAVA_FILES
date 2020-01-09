@@ -1,0 +1,11 @@
+./java/JohnnyVon/gui/AboutWindow.java
+./java/JohnnyVon/gui/CodonViewer.java
+./java/JohnnyVon/gui/ConfigurationPanel.java
+./java/JohnnyVon/gui/JohnnyVonDisplay.java
+./java/JohnnyVon/engine/AbstractCodon.java
+./java/JohnnyVon/engine/DefaultCodon.java
+./java/JohnnyVon/engine/Pair.java
+./java/JohnnyVon/engine/Simulator.java
+./java/JohnnyVon/engine/Viewer.java
+./java/JohnnyVon/launch/JohnnyVonApplet.java
+./java/JohnnyVon/launch/JohnnyVonApplication.java
