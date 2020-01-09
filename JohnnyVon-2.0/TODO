@@ -1,0 +1,14 @@
+
+TODO
+  
+  - Fix drawing bug.  Image is not drawn in the correct place if you drag a
+    window over it, or after switching tabs, etc.  This is a Java bug, I
+    think.
+  - Optimize code
+    - Break up container into zones, and only interact codons in each zone?
+    - Make sure that Codons that are fully bonded only call interact() with 
+       their partner codons
+  - Support reading more configuration from files
+    - Create some abstraction of the Codon's internal state so that state
+      machines can be trivially read from a file.
+

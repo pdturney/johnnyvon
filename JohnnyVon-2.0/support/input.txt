@@ -1,0 +1,255 @@
+# The default set
+Default = SmallTriangles
+
+# Name a set.
+#########
+Triangles
+#########
+
+# Size of container (units).  Container extends this far from the 
+# origin on each axis.
+Triangles.Size = 80
+# Number of Codons to create of each type.
+Triangles.Create = 0, 200, 0, 0
+# type, x, y, angle, vx, vy, angular_velocity
+# type = the type of this codon.  0, 1, 2 or 3.
+# (x, y) = location.  (x and y must be between within -(size of container)
+# and +(size of container).
+# (vx, vy) = initial linear velocity.
+# angle = initial angle (radians, CCW from East.)
+# angular_velocity = angular_velocity (radians/sec)
+
+# NOT YET IMPLEMENTED: left, right, up
+# left, right, up = index of codon to bond to.  First specified codon has
+# index 0, second has index 1, etc.  If codons have contradictory bonding
+# information, the first specification wins.  Use "-" to indicate no bond.
+
+# If some values are not provided, zeros are assumed.  (Frequently only the
+# first 4 are needed.)
+# 
+# A trailing semicolon will create a "default" codon with values of all zeros.
+Triangles.Seed = \
+1,	-14,	0,	90; \
+1,	  0,	0,	90; \
+1,	 14,	0,	90
+
+#######
+SmallTriangles
+#######
+
+# Container size
+SmallTriangles.Size = 30
+# Number of Codons of each type
+SmallTriangles.Create = 0, 54, 0, 0
+# Specified codons
+SmallTriangles.Seed = \
+1,	-14,	0,	90; \
+1,	  0,	0,	90; \
+1,	 14,	0,	90
+
+#######
+BigTriangles
+#######
+
+# Container size
+BigTriangles.Size = 80
+# Number of Codons of each type
+BigTriangles.Create = 100, 150, 0, 0
+# Specified codons
+BigTriangles.Seed = \
+1,	-56,	0,	90; \
+0,	-42,	0,	90; \
+1,	-28,	0,	90; \
+1,	-14,	0,	90; \
+0,	  0,	0,	90; \
+1,	 14,	0,	90; \
+1,	 28,	0,	90; \
+0,	 42,	0,	90; \
+1,	 56,	0,	90
+
+
+#######
+Squares
+#######
+
+# Container size
+Squares.Size = 80
+# Number of Codons of each type
+Squares.Create = 0, 100, 0, 100
+# Specified codons
+Squares.Seed = \
+3,	-14,	10,	270; \
+1,	0,	10,	270; \
+3,	14,	10,	270; \
+1,	28,	10,	270
+
+
+#######
+Rectangles
+#######
+
+# Container size
+Rectangles.Size = 80
+# Number of Codons of each type
+Rectangles.Create = 120, 240, 0, 120
+# Specified codons
+Rectangles.Seed = \
+1,	-42,	0,	90; \
+3,	-28,	0,	90; \
+1,	-14,	0,	90; \
+0,	  0,	0,	90; \
+1,	 14,	0,	90; \
+3,	 28,	0,	90; \
+1,	 42,	0,	90; \
+0,	 56,	0,	90
+
+########
+Hexagons 
+########
+
+# Container size
+Hexagons.Size = 80
+# Number of Codons of each type
+Hexagons.Create = 0, 0, 0, 200 
+# Specified codons
+Hexagons.Seed = \
+3,	-28,	0,	90; \
+3,	-14,	0,	90; \
+3,	  0,	0,	90; \
+3,	 14,	0,	90; \
+3,	 28,	0,	90; \
+3,	 42,	0,	90
+
+
+########
+BigHexagons 
+########
+
+# Container size
+BigHexagons.Size = 160
+# Number of Codons of each type
+BigHexagons.Create = 200, 0, 0, 400
+# Specified codons
+BigHexagons.Seed = \
+3, -112,	-70,	270; \
+0,	-98,	-70,	270; \
+3,	-84,	-70,	270; \
+3,	-70,	-70,	270; \
+0,	-56,	-70,	270; \
+3,	-42,	-70,	270; \
+3,	-28,	-70,	270; \
+0,	-14,	-70,	270; \
+3,	  0,	-70,	270; \
+3,	 14,	-70,	270; \
+0,	 28,	-70,	270; \
+3,	 42,	-70,	270; \
+3,	 56,	-70,	270; \
+0,	 70,	-70,	270; \
+3,	 84,	-70,	270; \
+3,	 98,	-70,	270; \
+0,	112,	-70,	270; \
+3,	126,	-70,	270; \
+\
+3, -112,	70,	90; \
+0,	-98,	70,	90; \
+3,	-84,	70,	90; \
+3,	-70,	70,	90; \
+0,	-56,	70,	90; \
+3,	-42,	70,	90; \
+3,	-28,	70,	90; \
+0,	-14,	70,	90; \
+3,	  0,	70,	90; \
+3,	 14,	70,	90; \
+0,	 28,	70,	90; \
+3,	 42,	70,	90; \
+3,	 56,	70,	90; \
+0,	 70,	70,	90; \
+3,	 84,	70,	90; \
+3,	 98,	70,	90; \
+0,	112,	70,	90; \
+3,	126,	70,	90
+
+
+########
+Octagons
+########
+
+# Container size
+Octagons.Size = 120
+# Number of Codons of each type
+Octagons.Create = 0, 120, 120, 0
+# Specified codons
+Octagons.Seed = \
+1,	-42,	0,	90; \
+2,	-28,	0,	90; \
+1,	-14,	0,	90; \
+2,	  0,	0,	90; \
+1,	 14,	0,	90; \
+2,	 28,	0,	90; \
+1,	 42,	0,	90; \
+2,	 56,	0,	90
+
+
+####
+Soup
+####
+
+Soup.Size = 90
+Soup.Create = 30, 30, 30, 30
+Soup.Seed = 
+
+
+#######
+BigSoup
+#######
+
+BigSoup.Size = 500
+BigSoup.Create = 300, 300, 300, 300
+BigSoup.Seed = 
+
+
+#####
+Pairs
+#####
+
+# Container Size
+Pairs.Size = 100
+# Number of Codons 
+Pairs.Create = 40, 40, 40, 40
+# Specified codons
+Pairs.Seed = \
+0,	-43,	0,	90; \
+0,	-29,	0,	90; \
+0,	-14,	0,	90; \
+1,	0,	0,	90; \
+0,	15,	0,	90; \
+2,	29,	0,	90; \
+0,	44,	0,	90; \
+3,	58,	0,	90; \
+\
+1,	-43,	20,	90; \
+0,	-29,	20,	90; \
+1,	-14,	20,	90; \
+1,	0,	20,	90; \
+1,	1,	20,	90; \
+2,	29,	20,	90; \
+1,	44,	20,	90; \
+3,	58,	20,	90; \
+\
+2,	-43,	-20,	90; \
+0,	-29,	-20,	90; \
+2,	-14,	-20,	90; \
+1,	0,	-20,	90; \
+2,	15,	-20,	90; \
+2,	29,	-20,	90; \
+2,	44,	-20,	90; \
+3,	58,	-20,	90; \
+\
+3,	-43,	-40,	90; \
+0,	-29,	-40,	90; \
+3,	-14,	-40,	90; \
+1,	0,	-40,	90; \
+3,	15,	-40,	90; \
+2,	29,	-40,	90; \
+3,	44,	-40,	90; \
+3,	58,	-40,	90

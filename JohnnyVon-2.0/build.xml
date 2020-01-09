@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project name="JohnnyVon" default="jar" basedir="."> 
+	
+	<!-- Basics -->
+	<property name="app" value="JohnnyVon" />
+	<property name="version" value="2.0-beta" />
+
+	<!-- Directories -->
+	<property name="src" value="src"/>
+	<property name="build" value="build"/>
+	<property name="dist" value="dist"/>
+	<property name="javadoc" value="doc/api"/>
+	
+	<!-- Jar -->
+	<property name="jar" value="${dist}/${app}-${version}.jar" />
+
+	<target name="init">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
+	</target>
+
+	<target name="compile" depends="init"
+			description="Compile all of the .java files.">
+		<javac srcdir="${src}" destdir="${build}" 
+		 debug="true" debuglevel="lines,source" source="1.4" target="1.4" />
+	</target>
+
+	<target name="docs" description="Build the Javadoc files">
+	
+		<javadoc destdir="${javadoc}"
+			packagenames="ca.nrc.iit.johnnyvon.*"
+			access="private" author="true" 
+			bottom="Copyright (C) 2002,2004,2005 National Research Council Canada"
+			windowtitle="GeneRelationships API">
+			<packageset dir="${src}">
+				<include name="ca/**" />
+			</packageset>
+			<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+		</javadoc>
+
+	</target>
+
+	<target name="clean" 
+			description="Destroys all generated files and dirs.">
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<move todir="."><fileset dir="${build}" /></move>
+			
+		<jar 
+			basedir="."
+			destfile="${jar}"
+			manifest="support/Manifest"
+			excludes="${dist}/**,Session.vim,doc/**" />
+<!--			includes="ca/nrc/iit/**,support/**" />-->
+		
+		<move todir="${build}/ca"><fileset dir="./ca" /></move>
+		
+	</target>
+
+</project>

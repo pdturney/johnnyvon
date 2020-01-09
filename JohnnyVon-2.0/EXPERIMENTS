@@ -1,0 +1,141 @@
+Experiment Log 
+
+2004-11-03 : The Morning After
+- Trying to fix tearing-apart.  TIMESTEP_DURATION = 0.04, STRAIGHTENING_FORCEs
+	= 0.0001
+- Refactored VISCOSITY and DAMPING value calculations.  Upped viscosities to
+	(0.45, 0.35) to try to stop oscilations.
+- Ran expermient with newer straightening algorithm minus some bugs, and found
+	the 4 codons did not fold up; they flew off to the nearest corner then
+	shattered.  Very weird. 
+	STRAIGHTENING_FORCE = { 0.5, 0.5, 0.5, 0.0 }; LINEAR_VISCOSITY = 0.25;
+	ANGULAR_VISCOSITY = 0.25; LINEAR_SPRING_DAMPING = 0.95; ANGULAR_SPRING_DAMPING = 0.95;
+- Took out new folding and reran. 
+- Different straightening forces after folding.  Hard to tell effect
+- No straightening forces after folding.
+- Bumped up REPEL_ITERATIONS from 100 -> 200 so that the folding would finish
+	while the forces were strong.  Need a new variable.
+- With STRAIGHTENING_FORCE_FOLDED = { 0.001, 0.001, 0.0001, 0.0 }, codons
+	crash as soon as the minimal forces start.
+- With *0* straightening forces after REPEL_ITERATIONS, things still bail.
+- STRAIGHTENING_FORCE_FOLDED = { 0.1, 0.1, 0.1, 0.0 } *still* collapses.  Bug
+	somewhere else?
+- STRAIGHTENING_FORCE_FOLDED = STRAIGHTENING_FORCE => Old behaviour.  (Note
+	that none of these experiments have enabled the newer straightening code)
+- STRAIGHTENING_FORCE_FOLDED = { 0.05, 0.05, 0.05, 0.0 }.  Dropped
+	ITERATIONS_AFTER_SPLIT to 130, experimentally determined to be a "good"
+	amount to leave the squares relatively square.
+- Stumped.  trying *stronger* folding forces: 
+	STRAIGHTENING_FORCE_FOLDED = { 1.05, 1.05, 1.05, 0.0 }  Still blows up.  I
+	don't get it.
+- Only slightly weaker: STRAIGHTENING_FORCE_FOLDED = { .4, .4, .4, 0.0 }
+- Seemed successful, so STRAIGHTENING_FORCE_FOLDED = { .3, .3, .3, 0.0 }
+- Seemed successful, so STRAIGHTENING_FORCE_FOLDED = { .2, .2, .2, 0.0 }
+- No better, no worse.  Trying ARM_FORCE = { 3.5, 3.5, 3.5, 0.3 } - Brutal.
+- Back to ARM_FORCE = { 1.5, 1.5, 1.5, 0.3 }.  Apply straightening only when
+	joints are already within 10% distance:
+	if (dist < (CodonParameters.FIELD_RADIUS[myArm] + CodonParameters.FIELD_RADIUS[otherArm]) * 0.1) {
+- trying no-folding-after-folded for triangles.  (all above were squares.)
+- Tried swapping angular acceleration straightening calculations.  disastrous.
+- Found bug in interactArms, forces not being applied to right arms.  grr.
+- Something's still not right.  flipped and unflipped comparison op in
+	if (armVector.getDotProduct(this._forces[i]) < 0) {
+- Corrected ANOTHER very old bug in the getPerpendicularProjectionOnto code.
+	Should now return a vector with the right sign.
+- Left triangles running overnight.  assert !(this._state._folded && this._state._splittingState != CodonState.SPLIT_SHATTER) || _bonded: "Cannot be folded without being bonded: " + this + this._state; failed.
+
+2004-11-05 
+- input.txt: Default <= Triangles (was Squares).
+- Fixed direction-of-rotation calculation.  Yay!!
+- Triangles work peachy.  Running with only one set of straightening forces
+	strengths.  Self-organized.
+	* One chain picked up codons, then spit them off repeatedly, never folding. Fix that.
+	* Weird.  it copied eventually.
+- Squares replicated too slowly (10 total).  Upped ITERATIONS_AFTER_SPLIT to 5000.
+- Success with squares.  Somehow two triangle-type codons got bonded in a
+	pair, started replicating and then attaching to the squares.
+	assert tangential.getDotProduct(this._forces[i]) > 0; failed, changed to
+	>=.
+- Failed even with >=.  Added debug output on failure so we know what's wrong.
+- Too many overlapping shapes in resulting structure.  Increasing tolerance
+	angle to make sure things bond faster.  Increasing left/right bond sizes as
+	well.
+- TIMESTEP_DURATION <- 0.20 (was 0.10)
+- TIMESTEP_DURATION <- 1.20, added debug-stop when split codons break.  Broke 
+	immediately.
+- TIMESTEP_DURATION <- 0.20.  Broke during split at step 10409.
+- Again, broke during split at step 19239
+- TIMESTEP_DURATION <- 0.10.  Broke during split at step 35002
+- ABOVE 4 TIMESTEP_DURATION TESTS WERE INVALID. (Except the 1.20 test)
+- Trying 0.20 again.  Seems bad.
+- Dropping repel iterations to 80.  Lowered repel arm force from 0.3 to 0.1.
+	Seem to have gotten a pair-chain by step 80000 or so.  Otherwise successful.
+- Upped repel arm force to 0.8, trying to find these pair-bonds' source
+- MORE POWER!  1.2.  Lost a chain when it was thrown against the container
+	edge.  Taht's not surprising.
+
+2004-11-08
+- Added no-folding-for-seed rule.  Won't get a test of this for a while, since
+	it takes a long run to see its effects.
+- Added brownian motion constants: linear = 0.2, angular = 0.05
+- Doubled those.  Worked okay.  A bit shakey.  More errors.
+- Tried 0.25, 0.25. Worked okay.  Closed triangles took longer to bond;
+	probably unacceptable for larger shapes.
+- Tried 0.25, 0.15 on hexagons.  Trouble closing, but not too bad.  Angles
+	more problem than spacial. (?)  Lots of layering, but overlapping is sloppy.
+- Lowered to 0.2, 0.1.  Seems to be okay.
+- Added bend-state rules.  No change to triangles. (i.e. good.)  Big triangles
+	worked (i.e. very good.) though not conclusively.
+
+2004-11-09
+- Ran large BigTriangles overnight (800, 1200, 0, 0, 300x300).  Worked, but
+	didn't get very far.
+
+
+... time lapse...
+
+2004-12-22
+- Working on bugs that produce errors.  In the simulation.
+- Mesh propagation only happens when in tolerance
+- Still getting 5-cycle triangles.  Dropped tolerance from PI/64 to PI/96
+- No more 5-cycles in several simulations.  
+- Blocked bonding if either codon is in SHATTER state.
+- Got funny error with hexagons
+- Added shatter-propagation left/right even if _hasSplit are different
+- 
+
+2005-01-05
+- Tried but failed to run this over the holidays:
+Triangles.Create=0, 1500, 0, 0
+Triangles.Seed=1,	-14,	0,	90;\
+ 1,	  0,	0,	90;\
+ 1,	 14,	0,	90
+Triangles.Size=200
+Triangles=
+(Apparently I paused it before leaving.  Doh!)
+- Changed the target angle from  
+	(CodonParameters.JOINT_ANGLE[myArm][this._type][other._type] - CodonParameters.JOINT_ANGLE[otherArm][other._type][this._type]) / 4.0 
+to just 
+	CodonParameters.JOINT_ANGLE[myArm][this._type][other._type];
+making it consistent with the _withinTolerances calculation.
+- Added overlap detection arm.  
+- Does nothing.  Made it shatter on bonding.
+- At first it was bonding for any two folded codons, that's no good, so
+	changed it to any two in-mesh codons.
+
+2005-01-10
+- Started 01-06: Large mesh of hexagons worked very well.  No overlaps.
+	Overlap-bonds not being broken, which caused minor errors.  Replicating
+	chains were meshed up, probably from the same thing.  Some kind of
+	fold/unfold cycle also seems to be occurring.
+
+2005-01-11
+- Thickened lines.  Triangles done.
+- Overnight 160 x 800cdns hexagon run -- very good.  Needs thicker lines
+
+2005-01-17 
+- Temporarily changed  LINEAR_VISCOSITY from 0.25 to 0.05
+- 0.05 -> 0.01
+- All folding forces from 0.5 -> 0.1
+- LINEAR_VISCOSITY -> 0.0
+- LINEAR_VISCOSITY -> 0.02

@@ -1,0 +1,23 @@
+2.0
+	Date January 19, 2005
+	- Full phenotype support; 4 codon types that fold into triangles, squares,
+		rectangles, hexagons or octagons
+	- New configuration file format using java.util.Properties
+	- Error detection and elimination
+	- Source of data for second tech report (and paper?)
+	- Forked from 1.1-rae, I think
+
+1.1-rae
+  Date unknown.
+  - Added simple phenotype support (RAE)
+    After replicating a certain number of times, the codons bend at the joins
+	based on their type (color)
+  - Forked from 1.0, not 1.1
+
+1.1
+  - More commenting
+
+
+1.0
+  August 19, 2002
+  - Initial version
